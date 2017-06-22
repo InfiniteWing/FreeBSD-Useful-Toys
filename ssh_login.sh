@@ -14,7 +14,7 @@ current_login_count_file="/usr/local/etc/ssmtp/current_login_count"
 
 mail_to="your mail here"
 mail_from="your mail here"
-mail_subject="subject here"
+mail_subject_title="subject here"
 while :
 do
 	typeset -i current_login_count=$(cat $current_login_count_file)
@@ -33,7 +33,7 @@ do
 				ip="$(grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' <<< "$line")"
 				echo "To: $mail_to" >> $mail_file
 				echo "From: $mail_from" >> $mail_file
-				mail_subject="$mail_subject $current_date_time_str user($ip) login"
+				mail_subject="$mail_subject_title $current_date_time_str user($ip) login"
 				echo "Subject: $mail_subject" >> $mail_file
 				echo "" >> $mail_file
 				echo "At $current_date_time_str, an user($ip) login." >> $mail_file
